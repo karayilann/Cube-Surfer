@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,23 +19,16 @@ public class GameWinScreen : MonoBehaviour
         panel.SetActive(false);
         stackController = GameObject.FindAnyObjectByType<CharacterStackController>();
         blockCount = stackController.blocks.Count;
-
     }
 
-
-    void Update()
+    private void OnTriggerEnter(Collider collision)
     {
-        
-    }
-
-    public void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "CollactableCube")
+        if (collision.CompareTag("CollactableCube"))
         {
+            Debug.Log("Temas var");
             puan = blockCount * 10;
             panel.SetActive(true);
-            winText.text = winText.text + puan ;
+            winText.text = winText.text + puan;
         }
     }
-
 }
